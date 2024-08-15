@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Gaya umum untuk body */
+        body {
+            font-family: Inter, sans-serif;
+            background: #e9e9e9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+
+        /* Container untuk form login */
+        .login-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            z-index: 1;
+        }
+
+        /* Gaya untuk label input */
+        .login-container label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        /* Gaya untuk input text dan password */
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 330px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            justify-content: center;
+            text-align: start;
+            font-family: Inter, sans-serif;
+        }
+
+        /* Gaya untuk checkbox */
+        .login-container input[type="checkbox"] {
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        /* Gaya untuk div "remember me" */
+        .remember-me {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .remember-me div {
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Gaya untuk link lupa password */
+        .forgot-password {
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+            margin-left: auto;
+            align-self: center;
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }        
+
+        /* Gaya untuk tombol submit */
+        .login-container input[type="submit"] {
+            width: 50%;
+            padding: 8px;
+            background-color: #ffffff;
+            color: black;
+            outline: 2px solid #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 0 auto;
+            font-family: Inter, sans-serif;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Gaya untuk paragraf dan link di bawah form login */
+        .login-container p {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .login-container a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .login-container a:hover {
+            text-decoration: underline;
+        }
+
+        /* Gaya untuk alert box yang berbeda */
+        .custom-alert,
+        .password-alert,
+        .error-alert {
+            padding: 15px;
+            border-radius: 4px;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            text-align: center;
+            display: none; /* Default state hidden */
+            z-index: 2; /* Ensure it appears above other content */
+        }
+
+        /* Gaya untuk alert email yang salah */
+        .custom-alert {
+            background-color: #f8d7da; /* Light red background */
+            color: #721c24; /* Dark red text */
+            border: 1px solid #f5c6cb; /* red border */
+        }
+
+        /* Gaya untuk alert password yang terlalu pendek */
+        .password-alert {
+            background-color: #f8d7da; /* Light red background */
+            color: #721c24; /* Dark red text */
+            border: 1px solid #f5c6cb; /* red border */
+        }
+
+        /* Gaya untuk alert jika email dan password salah */
+        .error-alert {
+            background-color: #fff3cd; /* Light yellow background */
+            color: #721c24; /* Dark red text */
+            border: 1px solid #ffeeba; /* Yellow border */
+        }; 
+    </style>
+</head>
+<body>
+    <!-- Alert untuk email yang salah -->
+    <div class="custom-alert" id="customAlert">The email you entered is invalid. Please try again.</div>
+    <!-- Alert untuk password yang kurang dari 5 karakter -->
+    <div class="password-alert" id="passwordAlert">The password must be at least 5 characters long.</div>
+    <!-- Alert untuk email dan password yang tidak sesuai-->
+    <div class="error-alert" id="errorAlert">Both the email and password are incorrect. Please try again.</div>
+
+    <div class="login-container">
+        <!-- Logo untuk halaman login -->
+        <img src="img/logopng.png" alt="Logo" style="display: block; margin: 0 auto 40px; width: 200px;">
+    
+        <!-- Formulir login -->
+        <form id="loginForm">
+            <!-- Label dan input untuk email -->
+            <label for="username">Email</label>
+            <input type="text" id="email" name="email" required>
+    
+            <!-- Label dan input untuk password -->
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+    
+            <!-- Div untuk opsi "Remember Me" dan link "Forgot Password?" -->
+            <div class="remember-me">
+                <div>
+                    <!-- Checkbox untuk "Remember Me" -->
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember" style="margin: 0px; margin-left: 7px;">Remember Me</label>
+                </div>
+                <!-- Link untuk "Forgot Password?" -->
+                <a href="#" class="forgot-password">Forgot Password?</a>
+            </div>            
+    
+            <!-- Tombol submit untuk form login -->
+            <input type="submit" value="Login" style="margin-top: 40px;">
+        </form>
+    
+        <!-- Tautan untuk pendaftaran jika pengguna belum memiliki akun -->
+        <p>Already have an account? <a href="#">Sign Up</a></p>
+    </div>
+    
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event){
+            event.preventDefault();  // Mencegah pengiriman form default
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //  Untuk validasi email
+
+            // Validasi email dan password
+            if (!emailPattern.test(email) && password.length < 5) {
+                // Untuk menampilkan alert jika email dan password salah
+                const errorAlert = document.getElementById("errorAlert");
+                errorAlert.style.display = "block";
+                setTimeout(() => {
+                    errorAlert.style.display = "none";
+                }, 3000);
+            } else if (!emailPattern.test(email)) {
+                // Untuk menampilkan alert jika email salah
+                const alertBox = document.getElementById("customAlert");
+                alertBox.style.display = "block";
+                setTimeout(() => {
+                    alertBox.style.display = "none";
+                }, 3000);
+            } else if (password.length < 5) {
+                // Untuk menampilkan alert jika password kurang dari 5 karakter
+                const passwordAlert = document.getElementById("passwordAlert");
+                passwordAlert.style.display = "block";
+                setTimeout(() => {
+                    passwordAlert.style.display = "none";
+                }, 3000);
+            } else {
+                // Untuk mengarahkan ke halaman done.html jika email dan password valid
+                window.location.href = "done.html";
+            }
+        });
+    </script>
+</body>
+</html>
